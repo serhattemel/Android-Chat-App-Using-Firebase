@@ -1,0 +1,79 @@
+package com.example.a201913709048;
+
+import android.content.Context;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+public class MassageFragment extends Fragment {
+
+    EditText t1,t2;
+    RecyclerView recyclerView;
+    DatabaseReference database;
+    MessageAdapter messageAdapter;
+    ArrayList<MessageModel> list;
+    Button recylerviewbtn;
+    Context context;
+
+  @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_massage, container, false);
+        t1 = (EditText) root.findViewById(R.id.et_groupName);
+        t2 = (EditText) root.findViewById(R.id.et_groupDesc);
+        context = getContext();
+        recylerviewbtn = root.findViewById(R.id.recylerviewbtn);
+        recyclerView = root.findViewById(R.id.msgList);
+        database = FirebaseDatabase.getInstance().getReference("Messages");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        list = new ArrayList<>();
+        messageAdapter = new MessageAdapter(context,list);
+        recyclerView.setAdapter(messageAdapter);
+
+        recylerviewbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.clear();
+                MessageModel message = new MessageModel(t1.getText().toString(),t2.getText().toString());
+                database.push().setValue(message);
+            }
+        });
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    MessageModel message = dataSnapshot.getValue(MessageModel.class);
+                    list.add(message);
+                }
+                messageAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return root;
+    }
+}

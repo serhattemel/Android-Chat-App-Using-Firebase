@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_group"
+    app:startDestination="@id/groupFragment">
+
+    <fragment
+        android:id="@+id/nav_massage"
+        android:name="com.example.a201913709048.MassageFragment"
+        android:label="fragment_massage"
+        tools:layout="@layout/fragment_massage" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.a201913709048.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="com.example.a201913709048.GroupFragment"
+        android:label="fragment_group"
+        tools:layout="@layout/fragment_group" />
+    <fragment
+        android:id="@+id/nav_groupmembers"
+        android:name="com.example.a201913709048.GroupMembersFragment"
+        android:label="fragment_group_members"
+        tools:layout="@layout/fragment_group_members" />
+    <fragment
+        android:id="@+id/nav_massagesend"
+        android:name="com.example.a201913709048.MassageSendFragment"
+        android:label="fragment_massage_send"
+        tools:layout="@layout/fragment_massage_send" />
+</navigation>

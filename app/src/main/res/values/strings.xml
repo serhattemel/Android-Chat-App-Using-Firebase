@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">201913709048</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Serhat Temel Mobil Uygulama</string>
+    <string name="nav_header_subtitle">Firebase ile bağlan</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_group">Grup Oluştur</string>
+    <string name="menu_groupmembers">Gruba Üye Ekle</string>
+    <string name="menu_massage">Mesaj Oluştur</string>
+    <string name="menu_massagesend">Mesaj Gönder</string>
+    <string name="menu_logout">Çıkış Yap</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
